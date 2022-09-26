@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  'flex items-center px-4 py-2 text-white text-sm rounded-md border border-blue-500 hover:border-blue-600 active:border-blue-700 active:translate-y-0.5 ease-in-out duration-200';
+  'flex items-center px-4 py-2 text-slate-200 text-sm font-semibold rounded-md border border-blue-500 hover:border-blue-600 active:border-blue-700 active:translate-y-0.5 ease-in-out duration-200';
 
 const variants: Record<Variant, string> = {
   primary: 'bg-blue-500 hover:bg-blue-600 active:bg-blue-700',
