@@ -48,7 +48,7 @@ export function Card({ color, to, badge, message, date, ...rest }: CardProps) {
   return (
     <div
       className={clsx(
-        'flex flex-col fw-full p-4 hover:-translate-y-0.5 transition ease-in-out duration-200 cursor-pointer',
+        'flex flex-col fw-full p-4 rounded hover:-translate-y-0.5 transition ease-in-out duration-200 cursor-pointer',
         cardVariants[color]
       )}
       {...rest}
