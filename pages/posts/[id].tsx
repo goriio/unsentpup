@@ -14,7 +14,7 @@ export default function Post({
     <div className="grid grid-cols-1 w-full md:w-1/2 mx-auto">
       <div
         className={clsx(
-          'w-full mx-auto mb-2 p-8 md:p-16 text-gray-100',
+          'w-full mx-auto mb-2 p-8 md:p-16 text-gray-100 rounded-md',
           cardVariants[color as Color]
         )}
       >

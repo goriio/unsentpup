@@ -74,17 +74,20 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Header />
       <main className="min-h-screen">
         <div className="container max-w-screen-lg mx-auto my-4 px-4">
-          <div className="flex justify-end w-full mb-8">
-            <form className="relative" onSubmit={handleSearchSubmit}>
+          <div className="flex justify-end w-full mb-4">
+            <form
+              className="relative w-full md:w-auto"
+              onSubmit={handleSearchSubmit}
+            >
               <input
                 type="text"
-                className="w-full md:w-auto pl-8 pr-4 py-2 border-none bg-slate-300 rounded-md"
+                className="w-full pl-8 pr-4 py-2 border-none bg-slate-700 rounded-md text-slate-300 text-sm"
                 value={search}
                 onChange={handleSearchChange}
                 aria-label="Search"
                 placeholder="Search for names, tags, or messages"
               />
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xl text-slate-700 ">
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-lg text-slate-300 ">
                 <BiSearch />
               </span>
             </form>
