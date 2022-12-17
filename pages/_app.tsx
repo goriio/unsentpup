@@ -1,18 +1,14 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Footer, Header } from '@/components';
+import { Footer, Header, SearchBar } from '@/components';
 import '@/styles/globals.css';
-import toast, { Toaster } from 'react-hot-toast';
-import { BiSearch } from 'react-icons/bi';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { Router } from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { Toaster } from 'react-hot-toast';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [search, setSearch] = useState('');
-  const { push } = useRouter();
-
   useEffect(() => {
     NProgress.configure({
       showSpinner: false,
@@ -28,22 +24,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       Router.events.off('routeChangeError', () => NProgress.done());
     };
   });
-
-  function handleSearchChange(event: ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-    if (value.length > 50) return;
-    setSearch(value);
-  }
-
-  function handleSearchSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!search) {
-      toast.error('Search input is empty');
-      return;
-    }
-    push(`/search/${search}`);
-    setSearch('');
-  }
 
   return (
     <>
@@ -75,22 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main className="min-h-screen">
         <div className="container max-w-screen-lg mx-auto my-4 px-4">
           <div className="flex justify-end w-full mb-4">
-            <form
-              className="relative w-full md:w-auto"
-              onSubmit={handleSearchSubmit}
-            >
-              <input
-                type="text"
-                className="w-full pl-8 pr-4 py-2 border-none bg-slate-700 rounded-md text-slate-300 text-sm"
-                value={search}
-                onChange={handleSearchChange}
-                aria-label="Search"
-                placeholder="Search for names, tags, or messages"
-              />
-              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-lg text-slate-300 ">
-                <BiSearch />
-              </span>
-            </form>
+            <SearchBar />
           </div>
           <Component {...pageProps} />
         </div>
