@@ -4,6 +4,7 @@ import { BiPlus } from 'react-icons/bi';
 import { FaEnvelopeOpen } from 'react-icons/fa';
 import { Button } from './Button';
 import PostForm from './PostForm';
+import { SearchBar } from './SearchBar';
 
 export function Header() {
   const [open, setOpen] = useState<boolean>(false);
@@ -17,9 +18,14 @@ export function Header() {
             <span>unsentpup</span>
           </h1>
         </Link>
-        <Button icon={<BiPlus />} onClick={() => setOpen(true)}>
-          Submit
-        </Button>
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:block">
+            <SearchBar />
+          </div>
+          <Button icon={<BiPlus />} onClick={() => setOpen(true)}>
+            Submit
+          </Button>
+        </div>
       </div>
       <PostForm isOpen={open} setIsOpen={setOpen} />
     </header>
