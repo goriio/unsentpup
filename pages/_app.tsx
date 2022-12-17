@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Header />
       <main className="min-h-screen">
         <div className="container max-w-screen-lg mx-auto my-4 px-4">
-          <div className="flex justify-end w-full mb-4">
+          <div className="flex justify-end w-full mb-4 sm:hidden">
             <SearchBar />
           </div>
           <Component {...pageProps} />
