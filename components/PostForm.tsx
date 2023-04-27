@@ -1,24 +1,24 @@
-import { db } from '@/firebase';
-import { Dialog, Transition } from '@headlessui/react';
-import clsx from 'clsx';
-import { FirebaseError } from 'firebase/app';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
-import toast from 'react-hot-toast';
-import { BiUpArrowAlt } from 'react-icons/bi';
-import { Button } from './Button';
-import { badgeVariants, cardVariants, Color } from './Card';
-import { Spinner } from './Spinner';
+import { db } from "@/firebase";
+import { Dialog, Transition } from "@headlessui/react";
+import clsx from "clsx";
+import { FirebaseError } from "firebase/app";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { ChangeEvent, FormEvent, Fragment, useState } from "react";
+import toast from "react-hot-toast";
+import { BiUpArrowAlt } from "react-icons/bi";
+import { Button } from "./Button";
+import { badgeVariants, cardVariants, Color } from "./Card";
+import { Spinner } from "./Spinner";
 
 const colors: Color[] = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'cyan',
-  'blue',
-  'violet',
-  'pink',
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "cyan",
+  "blue",
+  "violet",
+  "pink",
 ];
 
 const NAME_MAX_LENGTH = 10;
@@ -31,9 +31,9 @@ interface PostFormProps {
 }
 
 export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
-  const [name, setName] = useState<string>('');
-  const [tag, setTag] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [name, setName] = useState<string>("");
+  const [tag, setTag] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const [color, setColor] = useState<Color>(colors[0]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -64,12 +64,12 @@ export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
     event.preventDefault();
     setName((prev) => prev.trim());
     setMessage((prev) => prev.trim());
-    if (!name) {
-      toast.error('You did not input their name.');
+    if (!name.trim()) {
+      toast.error("You did not input their name.");
       return;
     }
-    if (!message) {
-      toast.error('You did not write a message.');
+    if (!message.trim()) {
+      toast.error("You did not write a message.");
       return;
     }
 
@@ -83,23 +83,23 @@ export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
 
     try {
       setLoading(true);
-      await addDoc(collection(db, 'posts'), post);
-      toast.success('Posted successfully.');
+      await addDoc(collection(db, "posts"), post);
+      toast.success("Posted successfully.");
     } catch (error) {
-      let message = '';
+      let message = "";
 
       if (error instanceof FirebaseError) {
         message = error.message;
       } else {
-        message = 'Something went wrong.';
+        message = "Something went wrong.";
       }
 
       toast.error(message);
     } finally {
       setIsOpen(false);
-      setName('');
-      setTag('');
-      setMessage('');
+      setName("");
+      setTag("");
+      setMessage("");
 
       setLoading(false);
     }
@@ -136,12 +136,12 @@ export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
                   <div
                     className={clsx(
                       cardVariants[color],
-                      'flex flex-col fw-full mb-4 p-4 rounded-md cursor-pointer'
+                      "flex flex-col fw-full mb-4 p-4 rounded-md cursor-pointer"
                     )}
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <h2 className="text-gray-50 font-semibold text-sm">
-                        To:{' '}
+                        To:{" "}
                         <input
                           value={name}
                           onChange={handleNameChange}
@@ -152,7 +152,7 @@ export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
                       </h2>
                       <span
                         className={clsx(
-                          'px-1 py-0.5 rounded-lg text-[10px] font-bold',
+                          "px-1 py-0.5 rounded-lg text-[10px] font-bold",
                           badgeVariants[color]
                         )}
                       >
@@ -189,7 +189,7 @@ export default function PostForm({ isOpen, setIsOpen }: PostFormProps) {
                         >
                           <span
                             className={clsx(
-                              'block w-full h-full bg-blue-500 rounded-md',
+                              "block w-full h-full bg-blue-500 rounded-md",
                               cardVariants[color]
                             )}
                           ></span>
