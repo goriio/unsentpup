@@ -1,12 +1,13 @@
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import { Footer, Header, SearchBar } from '@/components';
-import '@/styles/globals.css';
-import { useEffect } from 'react';
-import { Router } from 'next/router';
-import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
-import { Toaster } from 'react-hot-toast';
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import { Footer, Header, SearchBar } from "@/components";
+import "@/styles/globals.css";
+import { useEffect } from "react";
+import { Router } from "next/router";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -14,14 +15,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       showSpinner: false,
     });
 
-    Router.events.on('routeChangeStart', () => NProgress.start());
-    Router.events.on('routeChangeComplete', () => NProgress.done());
-    Router.events.on('routeChangeError', () => NProgress.done());
+    Router.events.on("routeChangeStart", () => NProgress.start());
+    Router.events.on("routeChangeComplete", () => NProgress.done());
+    Router.events.on("routeChangeError", () => NProgress.done());
 
     return () => {
-      Router.events.off('routeChangeStart', () => NProgress.start());
-      Router.events.off('routeChangeComplete', () => NProgress.done());
-      Router.events.off('routeChangeError', () => NProgress.done());
+      Router.events.off("routeChangeStart", () => NProgress.start());
+      Router.events.off("routeChangeComplete", () => NProgress.done());
+      Router.events.off("routeChangeError", () => NProgress.done());
     };
   });
 
@@ -65,11 +66,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         position="bottom-right"
         toastOptions={{
           style: {
-            background: '#334155',
-            color: '#E5E7EB',
+            background: "#334155",
+            color: "#E5E7EB",
           },
         }}
       />
+      <Analytics />
     </>
   );
 }
